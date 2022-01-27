@@ -1,70 +1,20 @@
-<script>
-    
-    function getCountry(){
-    fetch('https://restcountries.com/v3.1/all')
-            .then(response=>response.json())
-            .then(data=>{
-                var info=document.getElementById("info");
-                var lang=document.getElementById("languages");
-                var money=document.getElementById("currencies");
 
-    data.forEach(country => {
-        //check eza country maktube sah
-       
-        if(country.name.common.toLowerCase()==document.getElementById("Search").value.toLowerCase()){//to lower case mshn ykun value da2i2 hon w honik
-                //NAME AND DEPENDCY
-            if(country.independent){
-                    var dep="independant";
-                }else{
-                    var dep="dependant";
-                }
-                document.getElementById("name").innerHTML=country.name.common+" is an "+dep+" country.";
-    //for image 
-    document.getElementById("image").src=country.flags.png;
-
-
-    var pop_reg_cap=document.createElement("p");
-pop_reg_cap.innerHTML="The capital is "+country.capital+" and its population is "+country.population+" and the region is "+country.region+".";
-    info.appendChild(pop_reg_cap);
-    
-    var languages =JSON.stringify(country.languages).split(",")
-    console.log(languages);
-    languages.forEach(l=>{
-        var language=document.createElement("li");
-        //also split the strings to arrays
-        var langu = l.split("\"");
-        console.log(langu);
-language.innerHTML=langu[3];
-     lang.appendChild(language);
-                    })
-
-
-                    var currencies=JSON.stringify(country.currencies).split("{");
-        console.log(currencies);
-        currencies.forEach(c=>{
-         
-            var curru = c.split("\"");
-        console.log(curru);
-money.innerHTML="CURRENCY name:"+curru[3]+" and its symbol: "+curru[7];
-        })
-        }//for if
-   
-    });
-            })
-        }
-    
-    
-    
-    
-    
-    </script>
+<script src="countries.js"></script>
 <html>
-    <input id='Search' type='text' placeholder='ENTER COUNTRY'>
-    <button id='mybutton' onClick="getCountry()">Get COUNTRY</button>
+    <body style="margin-left: 0.5%; margin-top: 0.5%;">
+    <input id='Search' type='text' placeholder='ENTER COUNTRY...'> 
+     <button id='mybutton' onclick=" getCountry();">Get COUNTRY</button>
+   
 <h1 id="name"></h1>
 <img id="image"/>
-<div id="info"></div>
-<ul id="languages"></ul>
+<p id="info"></p>
+<h3 id="spokenlanguagestext"></h3>
+<ul  id="languages"></ul>
 <h3 style="color: green;" id="currencies"></h3>
+
+
+   
+  
+
 </body>
 </html>
