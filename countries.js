@@ -53,7 +53,7 @@ language.innerHTML=langu[3];
          
             var curru = c.split("\"");
         console.log(curru);
-money.innerHTML=" CURRENCY name: "+curru[1]+" and its symbol: "+curru[7];
+money.innerHTML=" CURRENCY name: "+curru[3]+" and its symbol: "+curru[7];
         })
         }//for if
    
